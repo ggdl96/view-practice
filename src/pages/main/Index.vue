@@ -1,23 +1,19 @@
 <template>
   <div>
     <HelloWorld/>
-    <UserList :users="users"/>
+    <UserForm/>
+    <UserList/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './../../components/HelloWorld.vue'
 import UserList from './../../components/UserList.vue'
-import UserStore from '../../store/user.store'
+import UserForm from './../../components/UserForm.vue'
 
 export default {
   components: {
-    HelloWorld, UserList
-    },
-    data () {
-      return {
-        users: UserStore.getAll(),
-      }
-  }
+    HelloWorld, UserList, UserForm
+    }
 }
 </script>
