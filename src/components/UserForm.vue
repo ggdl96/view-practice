@@ -1,35 +1,54 @@
 <template class="userList">
-  <div>
-    <div>
-      <input type="text">
-      <input type="text">
+  <div class="form-body">
+    <div class="input-row">
+      <input type="text" placeholder="first name:" v-model="firstName">
+      <input type="text" placeholder="last name:" v-model="lastName">
     </div>
-   <button type="submit"></button>
+    <button type="submit" @click="save()">Add User</button>
+    <label v-show="!valid" for="all">Both fields are required!!</label>
   </div>
 </template>
 
 <script>
+import UserStore from '../store/user.store'
 export default {
   name: 'userForm',
-  methods:{
-    a: function (event) {
-      console.log('clicked');
+  methods: {
+    save () {
+      this.blocked = true
+
+      if (this.firstName && this.lastName) {
+        const user = {
+          firstName: this.firstName,
+          lastName: this.lastName
+        }
+
+        UserStore.save(user)
+      } else {
+        this.valid = false
+         this.blocked = false
+      }
+    }
+  },
+  data () {
+    return {
+      firstName: '',
+      lastName: '',
+      valid: true,
+      blocked: false,
     }
   }
 }
 </script>
 
 <style scoped>
-  li {
-    background: gray;
-    color: red;
-    margin: 2px 0px;
+  .form-body {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 27% 8%;
   }
-
-  li > span {
-    width: 22%;
-    background: white;
-  }
-
+  .input-row {
+    display: flex;
+}
 </style>
 

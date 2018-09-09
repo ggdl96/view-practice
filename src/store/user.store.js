@@ -18,6 +18,11 @@ const UserStore = {
         users[index].clicks++
       }
     })
+  },
+  save (user) {
+    user.id = users[users.length - 1].id + 1
+    user.clicks = 0
+    users.push(user)
   }
 }
 
