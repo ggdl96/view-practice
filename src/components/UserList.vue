@@ -11,6 +11,7 @@
           {{user.lastName}}
         </span>
         <span>{{user.clicks}}</span>
+        <span @click="deleteUser(user.id, event)">delete</span>
       </li>
     </ul>
   </div>
@@ -29,6 +30,9 @@ export default {
   methods:{
     countClick: function (id, event) {
       UserStore.countClick(id)
+    },
+    deleteUser: function (id, event) {
+      UserStore.delete(id)
     }
   }
 }
